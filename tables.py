@@ -65,13 +65,13 @@ class HeatTable:
 
         if AutoSetup:
             self.setup(colormap, mode, alpha=alpha)
-            
-    
+
+
     def __validate_input(self):
         """Check the dimension and type of the input"""
         if not isinstance(self.cells, np.ndarray):
             self.cells = np.array(self.cells)
-            
+
         if self.cells.ndim == 1:
             print(f"Warning: 'cells' is of shape {self.cells.shape} which will "
                   f"be converted to the shape (1,{self.cells.size})!")
@@ -85,14 +85,14 @@ class HeatTable:
             else:
                 msg = f"Error: Cells of shape {self.cells.shape} could not be converted to 2d!"
                 raise IndexError(msg)
-            
+
 
     def setup(self, colormap='viridis', mode='rgb', alpha=None):
         """Setup the colors of each cell according to the given 'heat'-array."""
         if mode != 'rgb' and alpha is None:
             msg = "'alpha' must be given for colormode 'rgba' or 'cmyk'."
             raise ValueError(msg)
-            
+
         self.__validate_input()
 
         cmap = plt.cm.get_cmap(colormap)
